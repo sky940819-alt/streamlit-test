@@ -199,10 +199,10 @@ if menu == "🏠 홈":
     st.markdown("""
     <div class="profile-card">
         <div class="profile-avatar">👨‍💻</div>
-        <p class="profile-name">홍길동</p>
+        <p class="profile-name">양민철</p>
         <p class="profile-title">Full-Stack Developer &amp; Data Engineer</p>
         <p class="profile-bio">
-            안녕하세요! 데이터와 웹을 연결하는 개발자 <strong>홍길동</strong>입니다.<br>
+            안녕하세요! 데이터와 웹을 연결하는 개발자 <strong>양민철</strong>입니다.<br>
             Python과 클라우드 기반 데이터 파이프라인, 그리고 사용자 중심의 웹 서비스를 개발합니다.<br>
             새로운 기술을 탐구하고 팀과 함께 성장하는 것을 즐깁니다. 🚀
         </p>
