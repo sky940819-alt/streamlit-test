@@ -259,86 +259,56 @@ if menu == "🏠 홈":
 elif menu == "💼 경력":
     st.markdown("## 💼 경력 & 학력")
 
+    # ── 타임라인 아이템 빌더 (들여쓰기 없이 HTML 생성 → mistune 파싱 안정)
+    def tl(date, title, sub, desc=""):
+        desc_html = f'<p style="color:#94a3b8;font-size:0.88rem;margin-top:8px;line-height:1.7;">{desc}</p>' if desc else ""
+        return (
+            '<div class="timeline-item">'
+            f'<div class="timeline-date">{date}</div>'
+            f'<div class="timeline-title">{title}</div>'
+            f'<div class="timeline-sub">{sub}</div>'
+            f'{desc_html}'
+            '</div>'
+        )
+
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("""
-        <div class="section-card">
-            <div class="section-title">🏢 경력 사항</div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2022.03 — 현재</div>
-                <div class="timeline-title">KDN 한국전력데이터네트웍스</div>
-                <div class="timeline-sub">데이터엔지니어 · 정규직</div>
-                <p style="color:#94a3b8; font-size:0.88rem; margin-top:8px;">
-                  데이터 파이프라인 설계 및 운영<br>
-                  내부 포털 시스템 풀스택 개발<br>
-                  Streamlit 기반 데이터 대시보드 구축
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2020.07 — 2022.02</div>
-                <div class="timeline-title">스타트업 A</div>
-                <div class="timeline-sub">백엔드 개발자 · 정규직</div>
-                <p style="color:#94a3b8; font-size:0.88rem; margin-top:8px;">
-                  FastAPI 기반 REST API 서버 개발<br>
-                  PostgreSQL / Redis 운영<br>
-                  AWS EC2, RDS 인프라 관리
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2019.01 — 2020.06</div>
-                <div class="timeline-title">IT 컨설팅 B사</div>
-                <div class="timeline-sub">주니어 개발자 · 정규직</div>
-                <p style="color:#94a3b8; font-size:0.88rem; margin-top:8px;">
-                  Java Spring 기반 웹 시스템 개발<br>
-                  데이터 마이그레이션 스크립트 작성<br>
-                  고객사 요구사항 분석 및 구현
-                </p>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        career_html = (
+            '<div class="section-card">'
+            '<div class="section-title">🏢 경력 사항</div>'
+            + tl("2022.03 — 현재", "KDN 한국전력데이터네트웍스", "데이터엔지니어 · 정규직",
+                 "데이터 파이프라인 설계 및 운영<br>내부 포털 시스템 풀스택 개발<br>Streamlit 기반 데이터 대시보드 구축")
+            + tl("2020.07 — 2022.02", "스타트업 A", "백엔드 개발자 · 정규직",
+                 "FastAPI 기반 REST API 서버 개발<br>PostgreSQL / Redis 운영<br>AWS EC2, RDS 인프라 관리")
+            + tl("2019.01 — 2020.06", "IT 컨설팅 B사", "주니어 개발자 · 정규직",
+                 "Java Spring 기반 웹 시스템 개발<br>데이터 마이그레이션 스크립트 작성<br>고객사 요구사항 분석 및 구현")
+            + '</div>'
+        )
+        st.markdown(career_html, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-        <div class="section-card">
-            <div class="section-title">🎓 학력</div>
+        # ── 학력 카드 (루트 div 하나씩 분리)
+        edu_html = (
+            '<div class="section-card">'
+            '<div class="section-title">🎓 학력</div>'
+            + tl("2015 — 2019", "○○대학교", "컴퓨터공학과 · 학사 졸업",
+                 "졸업논문: 딥러닝 기반 이미지 분류<br>학점: 4.1 / 4.5")
+            + tl("2012 — 2015", "○○고등학교", "이과 계열 졸업")
+            + '</div>'
+        )
+        st.markdown(edu_html, unsafe_allow_html=True)
 
-            <div class="timeline-item">
-                <div class="timeline-date">2015 — 2019</div>
-                <div class="timeline-title">○○대학교</div>
-                <div class="timeline-sub">컴퓨터공학과 · 학사 졸업</div>
-                <p style="color:#94a3b8; font-size:0.88rem; margin-top:8px;">
-                  졸업논문: 딥러닝 기반 이미지 분류<br>
-                  학점: 4.1 / 4.5
-                </p>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2012 — 2015</div>
-                <div class="timeline-title">○○고등학교</div>
-                <div class="timeline-sub">이과 계열 졸업</div>
-            </div>
-        </div>
-
-        <div class="section-card" style="margin-top:0;">
-            <div class="section-title">🏆 자격증 & 수상</div>
-            <div class="timeline-item">
-                <div class="timeline-date">2023.08</div>
-                <div class="timeline-title">AWS Solutions Architect Associate</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2022.05</div>
-                <div class="timeline-title">정보처리기사</div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-date">2021.11</div>
-                <div class="timeline-title">SQLD (SQL 개발자)</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
+        # ── 자격증 카드 (별도 st.markdown 호출 — 루트 div 중복 방지)
+        cert_html = (
+            '<div class="section-card">'
+            '<div class="section-title">🏆 자격증 &amp; 수상</div>'
+            + tl("2023.08", "AWS Solutions Architect Associate", "")
+            + tl("2022.05", "정보처리기사", "")
+            + tl("2021.11", "SQLD (SQL 개발자)", "")
+            + '</div>'
+        )
+        st.markdown(cert_html, unsafe_allow_html=True)
 
 
 # ═══════════════════════════════════════════════════════════════
